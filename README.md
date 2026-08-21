@@ -23,5 +23,7 @@ python3 main.py <path/to/directory>
 ```
 
 ## Files & Directories
+* [Modules](Modules): Subdirectory containing Python modules.
+    * [watcher.py](Modules/watcher.py): Module defining logic to monitor directories for file changes.
 * [main.py](main.py): Python script to run this project.
 * [README.md](README.md): This file.

@@ -16,7 +16,10 @@ git clone https://github.com/Frosk-Kristian/filewatch.git
 ```
 
 ## Requirements
-TO-DO
+Used libraries and versions outlined in `requirements.txt`. To install project requirements using pip, open a terminal and navigate to the same directory as `requirements.txt` then run the following.
+```shell
+pip install -r requirements.txt
+```
 
 ## Running The Project
 To run this project, open a terminal and navigate to the same directory as `main.py` then run the following (subtituting `<path/to/directory>` for the path to the desired directory).
@@ -36,3 +39,4 @@ Attempting to run the project without supplying command line arguments will prom
     * [watcher.py](Modules/watcher.py): Module defining logic to monitor directories for file changes.
 * [main.py](main.py): Python script to run this project.
 * [README.md](README.md): This file.
+* [requirements.txt](requirements.txt): Text file listing required packages and versions.

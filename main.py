@@ -1,11 +1,12 @@
 import sys, os
 
 if __name__ == "__main__":
+    # check for command line arguments
     if len(sys.argv) < 2:
         print("Usage: python3 main.py <first_directory> <second_directory> ...")
         sys.exit(1)
 
-    watched = []
+    watched = [] # list of directories to monitor for file changes
 
     for i in range(1, len(sys.argv)):
         dir = sys.argv[i]

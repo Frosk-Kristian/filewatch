@@ -3,18 +3,24 @@ import time
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
-class MyEventHandler(FileSystemEventHandler):
-    #def on_any_event(self, event: FileSystemEvent) -> None:
-        #print(f"I saw something: {event}")
+changes = []
 
+class MyEventHandler(FileSystemEventHandler):
     def on_created(self, event: FileSystemEvent) -> None:
         print(f"I see something new: {event} (created)")
+        changes.append(event)
 
     def on_deleted(self, event: FileSystemEvent) -> None:
         print(f"I no longer see: {event} (deleted)")
+        changes.append(event)
 
     def on_modified(self, event: FileSystemEvent) -> None:
         print(f"I saw something change: {event} (modified)")
+        changes.append(event)
+
+    def on_moved(self, event: FileSystemEvent) -> None:
+        print(f"I saw something move: {event} (moved)")
+        changes.append(event)
 
 def watcher(dirs: list[str]):
     """

@@ -18,9 +18,17 @@ git clone https://github.com/Frosk-Kristian/filewatch.git
 TO-DO
 
 ## Running The Project
+To run this project, open a terminal and navigate to the same directory as `main.py` then run the following (subtituting `<path/to/directory>` for the path to the desired directory).
 ```shell
 python3 main.py <path/to/directory>
 ```
+
+Alternatively, you can monitor multiple directories by supplying additional command line arguments as follows.
+```shell
+python3 main.py <first_directory> <second_directory> ... <xth_directory>
+```
+
+Attempting to run the project without supplying command line arguments will prompt an error message and exit the project early.
 
 ## Files & Directories
 * [Modules](Modules): Subdirectory containing Python modules.

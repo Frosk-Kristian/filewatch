@@ -7,7 +7,7 @@
 * [Files & Directories](#files--directories)
 
 ## Overview
-Code snippet for a utility that monitors any number of directories and tracks observed file changes. Developed in Python3 on Ubuntu (via WSL2).
+Code snippet for a utility that monitors any number of directories and tracks observed file changes. Developed in Python 3.10.12 on Ubuntu (via WSL2).
 
 ## Clone This Repository
 To clone this repository, with git installed open a terminal and run the following.

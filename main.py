@@ -16,8 +16,8 @@ if __name__ == "__main__":
         else:
             watched.append(dir)
 
-    if not watched:
-        print("ERROR: no valid directories!")
+    try:
+        watcher(watched)
+    except ValueError as e:
+        print(f"ERROR: {e}")
         sys.exit(1)
-
-    watcher(watched)

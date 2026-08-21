@@ -1,4 +1,5 @@
 import sys, os
+from Modules.watcher import watcher
 
 if __name__ == "__main__":
     # check for command line arguments
@@ -11,10 +12,12 @@ if __name__ == "__main__":
     for i in range(1, len(sys.argv)):
         dir = sys.argv[i]
         if not os.path.isdir(dir):
-            print(f"ERROR: invalid directory \"{dir}\"!")
+            print(f"ERROR: \"{dir}\" is a file, not a directory!") if os.path.isfile(dir) else print(f"ERROR: no such directory \"{dir}\"!")
         else:
             watched.append(dir)
 
     if not watched:
         print("ERROR: no valid directories!")
         sys.exit(1)
+
+    watcher(watched)

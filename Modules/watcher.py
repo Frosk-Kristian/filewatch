@@ -1,26 +1,24 @@
 import time
-
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
 from watchdog.observers import Observer
-
-changes = []
+from .dbman import insert_db
 
 class MyEventHandler(FileSystemEventHandler):
     def on_created(self, event: FileSystemEvent) -> None:
         print(f"I see something new: {event} (created)")
-        changes.append(event)
+        insert_db(event.src_path, "", "create")
 
     def on_deleted(self, event: FileSystemEvent) -> None:
         print(f"I no longer see: {event} (deleted)")
-        changes.append(event)
+        insert_db(event.src_path, "", "delete")
 
     def on_modified(self, event: FileSystemEvent) -> None:
         print(f"I saw something change: {event} (modified)")
-        changes.append(event)
+        insert_db(event.src_path, "", "modify")
 
     def on_moved(self, event: FileSystemEvent) -> None:
         print(f"I saw something move: {event} (moved)")
-        changes.append(event)
+        insert_db(event.src_path, event.dest_path, "move")
 
 def watcher(dirs: list[str]):
     """

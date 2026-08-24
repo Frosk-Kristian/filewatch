@@ -1,5 +1,6 @@
 import sys, os
 from Modules.watcher import watcher
+from Modules.dbman import init_db
 
 if __name__ == "__main__":
     # check for command line arguments
@@ -17,6 +18,7 @@ if __name__ == "__main__":
             watched.append(dir)
 
     try:
+        init_db()
         watcher(watched)
     except ValueError as e:
         print(f"ERROR: {e}")

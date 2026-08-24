@@ -1,5 +1,6 @@
 import sys, os
 from Modules.watcher import watcher
+from Modules.dbman import init_db
 
 if __name__ == "__main__":
     # check for command line arguments
@@ -16,8 +17,9 @@ if __name__ == "__main__":
         else:
             watched.append(dir)
 
-    if not watched:
-        print("ERROR: no valid directories!")
+    try:
+        init_db()
+        watcher(watched)
+    except ValueError as e:
+        print(f"ERROR: {e}")
         sys.exit(1)
-
-    watcher(watched)

@@ -36,6 +36,7 @@ Attempting to run the project without supplying command line arguments will prom
 
 ## Files & Directories
 * [Modules](Modules): Subdirectory containing Python modules.
+    * [dbman.py](Modules/dbman.py): Module defining SQLite3 database used to store and persist observed file changes between sessions.
     * [watcher.py](Modules/watcher.py): Module defining logic to monitor directories for file changes.
 * [main.py](main.py): Python script to run this project.
 * [README.md](README.md): This file.

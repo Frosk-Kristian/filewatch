@@ -11,7 +11,12 @@ def insert_db(source: str, destination: str, update_type: str):
         source: path to the file that was updated
         destination: new path of the file in the event that it was moved or renamed
         update_type: type of file update (create, delete, modify, move)
+    Raises:
+        ValueError: if db_path is empty (i.e. init_db() has not been called)
     """
+    if not db_path:
+        raise ValueError("Database path not set, call init_db() before inserting into database.")
+
     with sqlite3.connect(db_path, timeout=10) as conn:
         cursor = conn.cursor()
         cursor.execute("INSERT INTO file_updates(source, destination, update_type) VALUES (?, ?, ?)", (source, destination, update_type))
@@ -49,5 +54,6 @@ def init_db(db: str = "file_changes.db"):
         ''')
 
         # creates indexes on the sync_status and timestamp columns to improve query performance
+        # not really within the scope of this snippet but I felt it would be good practice to include seeing as the idea is that a separate application would be querying this db to sync changes with a server
         cursor.execute('''CREATE INDEX IF NOT EXISTS idx_sync_status ON file_updates(sync_status)''')
         cursor.execute('''CREATE INDEX IF NOT EXISTS idx_timestamp ON file_updates(timestamp)''')

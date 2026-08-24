@@ -4,6 +4,10 @@ from watchdog.observers import Observer
 from .dbman import insert_db
 
 class MyEventHandler(FileSystemEventHandler):
+    """
+    Event handler that looks for file system changes and inserts them into a database. 
+    For the purpose of this snippet also prints the observed changes to stdout, this functionality would be removed in a production environment.
+    """
     def on_created(self, event: FileSystemEvent) -> None:
         print(f"I see something new: {event} (created)")
         insert_db(event.src_path, "", "create")

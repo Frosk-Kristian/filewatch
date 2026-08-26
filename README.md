@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ```
 
 ## Running The Project
-To run this project, open a terminal and navigate to the same directory as `main.py` then run the following (subtituting `<path/to/directory>` for the path to the desired directory).
+To run this project, open a terminal and navigate to the same directory as `main.py` then run the following (substituting `<path/to/directory>` for the path to the desired directory).
 ```shell
 python3 main.py <path/to/directory>
 ```

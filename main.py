@@ -1,6 +1,25 @@
 import sys, os
+from collections import defaultdict
 from Modules.watcher import watcher
 from Modules.dbman import init_db
+
+def group_by_disk(dirs: list[str]) -> dict[str, list[str]]:
+    """
+    Groups a list of directories by their disk drive letter.
+    Args:
+        dirs: list of string directories to be grouped
+    Returns:
+        dict: dictionary with disk drive letters as keys and lists of directories as values
+    """
+    grouped_dirs = defaultdict(list)
+
+    # iterates through each directory and groups them by their drive
+    # doesn't bother printing to avoid apearing erroneous due to disk appearing blank on Linux and MacOS, it does work (I have tested as such) but the drive letter just isn't displayed
+    for dir in dirs:
+        disk = os.path.splitdrive(dir)[0]
+        grouped_dirs[disk].append(dir)
+    
+    return grouped_dirs
 
 if __name__ == "__main__":
     # check for command line arguments
@@ -19,7 +38,7 @@ if __name__ == "__main__":
 
     try:
         init_db()
-        watcher(watched)
+        watcher(group_by_disk(watched))
     except ValueError as e:
         print(f"ERROR: {e}")
         sys.exit(1)

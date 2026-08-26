@@ -17,6 +17,10 @@ class MyEventHandler(FileSystemEventHandler):
         insert_db(event.src_path, "", "delete")
 
     def on_modified(self, event: FileSystemEvent) -> None:
+        # skips directory modifications as they are a side effect of other events within the directory and otherwise pollute logs/database with meaningless information
+        if event.is_directory:
+            return
+        
         print(f"I saw something change: {event} (modified)")
         insert_db(event.src_path, "", "modify")
 
